@@ -4,7 +4,7 @@
 #
 Name     : dos2unix
 Version  : 7.3.3
-Release  : 18
+Release  : 19
 URL      : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.3.3.tar.gz
 Source0  : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.3.3.tar.gz
 Summary  : No detailed summary available
