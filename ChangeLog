@@ -1,3 +1,43 @@
+2016-05-24 Erwin Waterlander <waterlan@xs4all.nl>
+	* Version 7.3.4
+	* djgpp.mak: Fix targets install and dist by setting SHELL variable.
+
+2016-05-03 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Fix malloc() check in glob_warg();
+
+2016-05-02 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Cleanup d2u_mktemp and MakeTempFileFrom(). 
+
+2016-04-30 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: New function d2u_mktemp(). Wrapper for mktemp() that uses
+	  GetTempFileName() on Windows. Use of mktemp() is not safe.
+	* common.h: Use mktemp wrapper also for Watcom C on Windows. Now dos2unix
+	  built with Watcom C can also support Unicode file names on Windows.
+	* wcc*.mak, wcc.mif: Enable  Unicode file name support for Watcom C.
+	* wcc*.mak, wcc.mif, vc.mak: Allow use of DEBUGMSG.
+	* common.c, dos2unix.c, unix2dos.c: Fix compilation for Watcom C. Reducing
+	  scope of some variables (done on 2016-03-19) led to compile errors for
+	  Watcom C. Watcom C supports only declaration of variables at the
+	  beginning of a scope.
+
+2016-04-29 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Code cleanup. Simplify use of MakeTempFileFrom().
+
+2016-04-15 Erwin Waterlander <waterlan@xs4all.nl>
+	* djgpp.mak: Extra comment for DJGPP 2.05. Extra
+	  variable CROSS_COMP.
+	* INSTALL.txt: Extra info for DJGPP.
+
+2016-03-28 Erwin Waterlander <waterlan@xs4all.nl>
+	* INSTALL.txt: Mention that MSYS(2) is required for building
+	  with MinGW(-w64).
+
+2016-03-19 Erwin Waterlander <waterlan@xs4all.nl>
+	* *.c: Fix all cppcheck warnings.
+
+2016-02-16 Erwin Waterlander <waterlan@xs4all.nl>
+	* djgpp.mak: Support cross compilation from Cygwin.
+
 2016-02-13 Erwin Waterlander <waterlan@xs4all.nl>
 	* Version 7.3.3
 
