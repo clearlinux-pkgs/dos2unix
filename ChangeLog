@@ -1,3 +1,44 @@
+2017-07-04 Erwin Waterlander <waterlan@xs4all.nl>
+	* Version 7.3.5
+	* Makefile: Compile with -O0 when DEBUG=1.
+
+2017-06-20 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: New flag 0 for option -i, --info. End information lines with
+	  a null character instead of a newline character, enabling correct file
+	  name interpretation when flag c is used.
+	* common.c: Don't print leading spaces when option -i with flag c is used.
+
+2017-05-18 Erwin Waterlander <waterlan@xs4all.nl>
+	* man/man1/dos2unix.pod: Improved example for recursive conversion.
+	  Thanks to report of Beep6581.
+	  https://sourceforge.net/p/dos2unix/bugs/14/
+
+2017-05-09 Erwin Waterlander <waterlan@xs4all.nl>
+	* Makefile: Create stubs for mac2unix.exe and unix2mac.exe
+	  with DJGPP 2.05. With DJGPP 2.03 this was done with 'ln -s',
+	  but this doesn't work with DJGPP 2.05.
+
+2016-11-15 Erwin Waterlander <waterlan@xs4all.nl>
+	* test/: Use by default C.UTF-8 locale for UTF-16 tests. Not all build
+	  environments have the en_US.UTF-8 locale. Try en_US.UTF-8 if C.UTF-8
+	  is not available, else skip the UTF-16 tests. Thanks to report of
+	  Jari Aalto.
+
+2016-11-01 Jari Aalto <jari.aalto@cante.net>
+	* Makefile: Reproducible date in man pages.
+	* test/Makefile: Disable by default colored output. To enable colored
+	  output add PROVE_OPT=--color to the make command line.
+	* test/chk_loc.sh: Check for missing argument.
+
+2016-09-20 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Code cleanup.
+
+2016-09-06 Erwin Waterlander <waterlan@xs4all.nl>
+	* dos2unix.c,unix2dos.c,common.c: Code cleanup.
+
+2016-05-25 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Fix compilation for msys2.
+
 2016-05-24 Erwin Waterlander <waterlan@xs4all.nl>
 	* Version 7.3.4
 	* djgpp.mak: Fix targets install and dist by setting SHELL variable.
