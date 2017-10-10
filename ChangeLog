@@ -1,3 +1,33 @@
+2017-10-10 Erwin Waterlander <waterlan@xs4all.nl>
+	* Version 7.4.0
+
+2017-09-24 Sebastian Rasmussen
+	* Fixed typos in code and documentation.
+
+2017-09-11 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: When --allow-chown is used put the same read/write
+	  permissions as in new file mode.
+	* man/man1/dos2unix.pod: Updated.
+
+2017-09-05 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Option -V shows if dos2unix has support for preserving
+	  the user and group ownership of files.
+	* common.c: New option --allow-chown to allow file ownership change
+	  in old file mode. Option --no-allow-chown does the opposite.
+	  Thanks to RedHat bug: 1483633 - Add option to force in-place conversion
+	  even if ownership cannot be preserved
+	  https://bugzilla.redhat.com/show_bug.cgi?id=1483633
+
+2017-08-05 Erwin Waterlander <waterlan@xs4all.nl>
+	* Makefile: Build all text and html manual files when ENABLE_NLS=1.
+	* Makefile: Removed unneeded tabs.
+
+2017-07-29 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Code cleanup.
+
+2017-07-08 Erwin Waterlander <waterlan@xs4all.nl>
+	* test/Makefile: Fix setting C.UTF-8 environment (when available).
+
 2017-07-04 Erwin Waterlander <waterlan@xs4all.nl>
 	* Version 7.3.5
 	* Makefile: Compile with -O0 when DEBUG=1.

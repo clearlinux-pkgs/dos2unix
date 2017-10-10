@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x38C1F572B12725BE (waterlan@xs4all.nl)
 #
 Name     : dos2unix
-Version  : 7.3.5
-Release  : 23
-URL      : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.3.5.tar.gz
-Source0  : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.3.5.tar.gz
-Source99 : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.3.5.tar.gz.asc
+Version  : 7.4.0
+Release  : 24
+URL      : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
+Source0  : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
+Source99 : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-2-Clause-FreeBSD
@@ -65,14 +65,14 @@ locales components for the dos2unix package.
 
 
 %prep
-%setup -q -n dos2unix-7.3.5
+%setup -q -n dos2unix-7.4.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1499265324
+export SOURCE_DATE_EPOCH=1507673578
 make V=1  %{?_smp_mflags}
 
 %check
@@ -83,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1499265324
+export SOURCE_DATE_EPOCH=1507673578
 rm -rf %{buildroot}
 %make_install
 %find_lang dos2unix
