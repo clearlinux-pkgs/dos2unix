@@ -6,7 +6,7 @@
 #
 Name     : dos2unix
 Version  : 7.4.0
-Release  : 27
+Release  : 28
 URL      : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
 Source0  : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
 Source99 : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz.asc
