@@ -5,18 +5,18 @@
 # Source0 file verified with key 0x38C1F572B12725BE (waterlan@xs4all.nl)
 #
 Name     : dos2unix
-Version  : 7.4.0
-Release  : 28
-URL      : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
-Source0  : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
-Source99 : http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz.asc
+Version  : 7.4.1
+Release  : 29
+URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
+Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
+Source1 : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-2-Clause BSD-2-Clause-FreeBSD
-Requires: dos2unix-bin
-Requires: dos2unix-doc
-Requires: dos2unix-locales
-Requires: dos2unix-data
+License  : BSD-2-Clause-FreeBSD
+Requires: dos2unix-bin = %{version}-%{release}
+Requires: dos2unix-license = %{version}-%{release}
+Requires: dos2unix-locales = %{version}-%{release}
+Requires: dos2unix-man = %{version}-%{release}
 
 %description
 dos2unix - DOS/Mac to Unix and vice versa text file format converter.
@@ -34,26 +34,27 @@ man/man1/dos2unix.htm : Dos2unix manual, HTML format.
 %package bin
 Summary: bin components for the dos2unix package.
 Group: Binaries
-Requires: dos2unix-data
+Requires: dos2unix-license = %{version}-%{release}
 
 %description bin
 bin components for the dos2unix package.
 
 
-%package data
-Summary: data components for the dos2unix package.
-Group: Data
-
-%description data
-data components for the dos2unix package.
-
-
 %package doc
 Summary: doc components for the dos2unix package.
 Group: Documentation
+Requires: dos2unix-man = %{version}-%{release}
 
 %description doc
 doc components for the dos2unix package.
+
+
+%package license
+Summary: license components for the dos2unix package.
+Group: Default
+
+%description license
+license components for the dos2unix package.
 
 
 %package locales
@@ -64,27 +65,46 @@ Group: Default
 locales components for the dos2unix package.
 
 
+%package man
+Summary: man components for the dos2unix package.
+Group: Default
+
+%description man
+man components for the dos2unix package.
+
+
 %prep
-%setup -q -n dos2unix-7.4.0
+%setup -q -n dos2unix-7.4.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1507673578
-make V=1  %{?_smp_mflags}
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1570075664
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+make  %{?_smp_mflags}
+
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1507673578
+export SOURCE_DATE_EPOCH=1570075664
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
+cp COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/COPYING.txt
 %make_install
 %find_lang dos2unix
 
@@ -98,8 +118,16 @@ rm -rf %{buildroot}
 /usr/bin/unix2dos
 /usr/bin/unix2mac
 
-%files data
-%defattr(-,root,root,-)
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/dos2unix/*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/dos2unix/COPYING.txt
+
+%files man
+%defattr(0644,root,root,0755)
 /usr/share/man/de/man1/dos2unix.1
 /usr/share/man/de/man1/mac2unix.1
 /usr/share/man/de/man1/unix2dos.1
@@ -112,6 +140,10 @@ rm -rf %{buildroot}
 /usr/share/man/fr/man1/mac2unix.1
 /usr/share/man/fr/man1/unix2dos.1
 /usr/share/man/fr/man1/unix2mac.1
+/usr/share/man/man1/dos2unix.1
+/usr/share/man/man1/mac2unix.1
+/usr/share/man/man1/unix2dos.1
+/usr/share/man/man1/unix2mac.1
 /usr/share/man/nl/man1/dos2unix.1
 /usr/share/man/nl/man1/mac2unix.1
 /usr/share/man/nl/man1/unix2dos.1
@@ -136,11 +168,6 @@ rm -rf %{buildroot}
 /usr/share/man/zh_CN/man1/mac2unix.1
 /usr/share/man/zh_CN/man1/unix2dos.1
 /usr/share/man/zh_CN/man1/unix2mac.1
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/doc/dos2unix/*
-%doc /usr/share/man/man1/*
 
 %files locales -f dos2unix.lang
 %defattr(-,root,root,-)

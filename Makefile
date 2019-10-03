@@ -1,5 +1,5 @@
 PKG_NAME := dos2unix
-URL := http://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.0.tar.gz
-
+URL = https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common

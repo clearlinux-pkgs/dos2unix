@@ -1,3 +1,21 @@
+2019-09-24 Erwin Waterlander <waterlan@xs4all.nl>
+	* Version 7.4.1
+
+2018-12-01 Than Ngo <ngothan@users.sourceforge.net>
+	* common.c: Fixed issues reported by Coverity Scan
+	  See https://sourceforge.net/p/dos2unix/bugs/18/
+
+2018-10-09 Erwin Waterlander <waterlan@xs4all.nl>
+	* common.c: Flush printf output stream before changing Windows console
+	  cp in utf8 mode. This to prevent issues. Although I did not see any.
+
+2018-08-06 kirotawa <kirotawa@users.sourceforge.net>
+	* dos2unix.c, unix2dos.c: Fixed a minor memory leak.
+	  See https://sourceforge.net/p/dos2unix/bugs/17/
+
+2018-07-21 Erwin Waterlander <waterlan@xs4all.nl>
+	* Makefile: Fix: Add RPM_LD_FLAGS instead of RPM_OPT_FLAGS to LDFLAGS.
+
 2017-10-10 Erwin Waterlander <waterlan@xs4all.nl>
 	* Version 7.4.0
 
