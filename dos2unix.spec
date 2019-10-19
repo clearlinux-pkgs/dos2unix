@@ -6,7 +6,7 @@
 #
 Name     : dos2unix
 Version  : 7.4.1
-Release  : 29
+Release  : 30
 URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
 Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
 Source1 : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz.asc
@@ -17,6 +17,7 @@ Requires: dos2unix-bin = %{version}-%{release}
 Requires: dos2unix-license = %{version}-%{release}
 Requires: dos2unix-locales = %{version}-%{release}
 Requires: dos2unix-man = %{version}-%{release}
+BuildRequires : perl(Test::Simple)
 
 %description
 dos2unix - DOS/Mac to Unix and vice versa text file format converter.
@@ -81,7 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570075664
+export SOURCE_DATE_EPOCH=1571458531
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -101,10 +102,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1570075664
+export SOURCE_DATE_EPOCH=1571458531
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
-cp COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/COPYING.txt
+cp %{_builddir}/dos2unix-7.4.1/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/7af97cf5b45ffa2adf00a8dbd23057a1ef76cd57
 %make_install
 %find_lang dos2unix
 
@@ -124,7 +125,7 @@ cp COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/COPYING.txt
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/dos2unix/COPYING.txt
+/usr/share/package-licenses/dos2unix/7af97cf5b45ffa2adf00a8dbd23057a1ef76cd57
 
 %files man
 %defattr(0644,root,root,0755)
