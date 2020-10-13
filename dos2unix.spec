@@ -5,19 +5,17 @@
 # Source0 file verified with key 0x38C1F572B12725BE (waterlan@xs4all.nl)
 #
 Name     : dos2unix
-Version  : 7.4.1
-Release  : 30
-URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
-Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz
-Source1 : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.1/dos2unix-7.4.1.tar.gz.asc
+Version  : 7.4.2
+Release  : 31
+URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.2/dos2unix-7.4.2.tar.gz
+Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.2/dos2unix-7.4.2.tar.gz
+Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.2/dos2unix-7.4.2.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause-FreeBSD
 Requires: dos2unix-bin = %{version}-%{release}
-Requires: dos2unix-license = %{version}-%{release}
 Requires: dos2unix-locales = %{version}-%{release}
 Requires: dos2unix-man = %{version}-%{release}
-BuildRequires : perl(Test::Simple)
 
 %description
 dos2unix - DOS/Mac to Unix and vice versa text file format converter.
@@ -35,7 +33,6 @@ man/man1/dos2unix.htm : Dos2unix manual, HTML format.
 %package bin
 Summary: bin components for the dos2unix package.
 Group: Binaries
-Requires: dos2unix-license = %{version}-%{release}
 
 %description bin
 bin components for the dos2unix package.
@@ -48,14 +45,6 @@ Requires: dos2unix-man = %{version}-%{release}
 
 %description doc
 doc components for the dos2unix package.
-
-
-%package license
-Summary: license components for the dos2unix package.
-Group: Default
-
-%description license
-license components for the dos2unix package.
 
 
 %package locales
@@ -75,21 +64,22 @@ man components for the dos2unix package.
 
 
 %prep
-%setup -q -n dos2unix-7.4.1
+%setup -q -n dos2unix-7.4.2
+cd %{_builddir}/dos2unix-7.4.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571458531
+export SOURCE_DATE_EPOCH=1602627641
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
@@ -102,10 +92,8 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1571458531
+export SOURCE_DATE_EPOCH=1602627641
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
-cp %{_builddir}/dos2unix-7.4.1/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/7af97cf5b45ffa2adf00a8dbd23057a1ef76cd57
 %make_install
 %find_lang dos2unix
 
@@ -122,10 +110,6 @@ cp %{_builddir}/dos2unix-7.4.1/COPYING.txt %{buildroot}/usr/share/package-licens
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/dos2unix/*
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/dos2unix/7af97cf5b45ffa2adf00a8dbd23057a1ef76cd57
 
 %files man
 %defattr(0644,root,root,0755)
