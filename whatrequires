@@ -1,4 +1,4 @@
 # This file contains recursive sources that require this package
 F-Engrave
 dmap2gcode
-onnx
+pypi-onnx
