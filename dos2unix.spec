@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x38C1F572B12725BE (waterlan@xs4all.nl)
 #
 Name     : dos2unix
-Version  : 7.4.3
-Release  : 32
-URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.3/dos2unix-7.4.3.tar.gz
-Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.3/dos2unix-7.4.3.tar.gz
-Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.3/dos2unix-7.4.3.tar.gz.asc
+Version  : 7.4.4
+Release  : 33
+URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.4/dos2unix-7.4.4.tar.gz
+Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.4/dos2unix-7.4.4.tar.gz
+Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.4.4/dos2unix-7.4.4.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -17,6 +17,9 @@ Requires: dos2unix-bin = %{version}-%{release}
 Requires: dos2unix-license = %{version}-%{release}
 Requires: dos2unix-locales = %{version}-%{release}
 Requires: dos2unix-man = %{version}-%{release}
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 dos2unix - DOS/Mac to Unix and vice versa text file format converter.
@@ -74,23 +77,23 @@ man components for the dos2unix package.
 
 
 %prep
-%setup -q -n dos2unix-7.4.3
-cd %{_builddir}/dos2unix-7.4.3
+%setup -q -n dos2unix-7.4.4
+cd %{_builddir}/dos2unix-7.4.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654532723
+export SOURCE_DATE_EPOCH=1676313174
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 make  %{?_smp_mflags}
 
 
@@ -102,10 +105,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1654532723
+export SOURCE_DATE_EPOCH=1676313174
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
-cp %{_builddir}/dos2unix-7.4.3/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/9404ca9d7570f8e7f5aead6192ba731b48b2a981
+cp %{_builddir}/dos2unix-%{version}/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/d40b13adc0d96ba03767b72f6dd606796d4f3818 || :
 %make_install
 %find_lang dos2unix
 
@@ -125,7 +128,7 @@ cp %{_builddir}/dos2unix-7.4.3/COPYING.txt %{buildroot}/usr/share/package-licens
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/dos2unix/9404ca9d7570f8e7f5aead6192ba731b48b2a981
+/usr/share/package-licenses/dos2unix/d40b13adc0d96ba03767b72f6dd606796d4f3818
 
 %files man
 %defattr(0644,root,root,0755)
@@ -141,6 +144,10 @@ cp %{_builddir}/dos2unix-7.4.3/COPYING.txt %{buildroot}/usr/share/package-licens
 /usr/share/man/fr/man1/mac2unix.1
 /usr/share/man/fr/man1/unix2dos.1
 /usr/share/man/fr/man1/unix2mac.1
+/usr/share/man/ko/man1/dos2unix.1
+/usr/share/man/ko/man1/mac2unix.1
+/usr/share/man/ko/man1/unix2dos.1
+/usr/share/man/ko/man1/unix2mac.1
 /usr/share/man/man1/dos2unix.1
 /usr/share/man/man1/mac2unix.1
 /usr/share/man/man1/unix2dos.1
@@ -157,6 +164,10 @@ cp %{_builddir}/dos2unix-7.4.3/COPYING.txt %{buildroot}/usr/share/package-licens
 /usr/share/man/pt_BR/man1/mac2unix.1
 /usr/share/man/pt_BR/man1/unix2dos.1
 /usr/share/man/pt_BR/man1/unix2mac.1
+/usr/share/man/ro/man1/dos2unix.1
+/usr/share/man/ro/man1/mac2unix.1
+/usr/share/man/ro/man1/unix2dos.1
+/usr/share/man/ro/man1/unix2mac.1
 /usr/share/man/sr/man1/dos2unix.1
 /usr/share/man/sr/man1/mac2unix.1
 /usr/share/man/sr/man1/unix2dos.1
