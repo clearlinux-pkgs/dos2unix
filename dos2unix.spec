@@ -7,7 +7,7 @@
 #
 Name     : dos2unix
 Version  : 7.5.0
-Release  : 34
+Release  : 35
 URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz
 Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz
 Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz.asc
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684424151
+export SOURCE_DATE_EPOCH=1685497606
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -117,7 +117,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1684424151
+export SOURCE_DATE_EPOCH=1685497606
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
 cp %{_builddir}/dos2unix-%{version}/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/d40b13adc0d96ba03767b72f6dd606796d4f3818 || :
@@ -134,9 +134,7 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /V3/usr/bin/dos2unix
-/V3/usr/bin/mac2unix
 /V3/usr/bin/unix2dos
-/V3/usr/bin/unix2mac
 /usr/bin/dos2unix
 /usr/bin/mac2unix
 /usr/bin/unix2dos
