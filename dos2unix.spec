@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x38C1F572B12725BE (waterlan@xs4all.nl)
 #
 Name     : dos2unix
-Version  : 7.5.0
-Release  : 35
-URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz
-Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz
-Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.0/dos2unix-7.5.0.tar.gz.asc
+Version  : 7.5.1
+Release  : 36
+URL      : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.1/dos2unix-7.5.1.tar.gz
+Source0  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.1/dos2unix-7.5.1.tar.gz
+Source1  : https://sourceforge.net/projects/dos2unix/files/dos2unix/7.5.1/dos2unix-7.5.1.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -78,10 +78,10 @@ man components for the dos2unix package.
 
 
 %prep
-%setup -q -n dos2unix-7.5.0
-cd %{_builddir}/dos2unix-7.5.0
+%setup -q -n dos2unix-7.5.1
+cd %{_builddir}/dos2unix-7.5.1
 pushd ..
-cp -a dos2unix-7.5.0 buildavx2
+cp -a dos2unix-7.5.1 buildavx2
 popd
 
 %build
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685497606
+export SOURCE_DATE_EPOCH=1693407361
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -117,7 +117,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1685497606
+export SOURCE_DATE_EPOCH=1693407361
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dos2unix
 cp %{_builddir}/dos2unix-%{version}/COPYING.txt %{buildroot}/usr/share/package-licenses/dos2unix/d40b13adc0d96ba03767b72f6dd606796d4f3818 || :
